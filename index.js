@@ -1,14 +1,3 @@
-/*
-
-This is how an item object should look like
-
-{
-  id: "001-beetroot", // <- the item id matches the icon name in the assets/icons folder
-  name: "beetroot",
-  price: 0.35 // <- You can come up with your own prices
-}
-
-*/
 
 const data = [
   {
@@ -64,7 +53,7 @@ const data = [
 ];
 
 
-const storeItems =[
+const cartItems =[
   {
     item: {
       id: "001-beetroot",
@@ -147,8 +136,6 @@ const storeItems =[
   }
 ]
 
-
-
 console.log("Working : ", data[0].price);
 
 // get the image
@@ -182,7 +169,6 @@ function renderCardItem (veggie) {
     const imgEl = document.createElement('img');
     const imgSrc = `assets/icons/${id}.svg`;
 
-    // imgEl.src = "assets/icons/001-beetroot.svg";
     imgEl.setAttribute('src', imgSrc);
     imgEl.setAttribute('alt', id);
 
@@ -190,8 +176,6 @@ function renderCardItem (veggie) {
 
     const buttonEl = document.createElement ('button');
     buttonEl.innerText = 'Add to cart';
-    
-    // console.log('imgEl: ', imgEl);
 
     listEL.append(divEl,buttonEl );
 
@@ -205,48 +189,100 @@ const cardItem = renderCardItem(data);
 
 const cartItemUlEl = document.querySelector('.cart--item-list');
 
-
 function renderStoreItem (yourCart) {
   console.log("our data in yourCart: ", yourCart);
+ 
+  for (let i = 0; i < yourCart.length; i++) { 
+    const cart = yourCart[i];
+    // console.log("cart:", cart);
+    const name = cart.item.name;
+    const id = cart.item.id;
 
-  for (let i = 0; i < yourCart.lenght; i++) { 
-  }
+    const listEl = document.createElement('li');
+    cartItemUlEl.append(listEl);
+    
+    const imgEl = document.createElement('img');
+    imgEl.className = ".cart--item-icon";
+    const imgSrc = `assets/icons/${id}.svg`;
+    imgEl.setAttribute('src', imgSrc);
+    imgEl.setAttribute('alt', name);
 
-
-
-  const listEl = document.createElement('li');
-  const imgEl = document.createElement('img'); 
-  imgEl.className = 'cart--item-icon';
-  imgEl.setAttribute('src', "imgSrc"); 
-  imgEl.setAttribute('alt', "");
-  listEl.append(imgEl);
-
+    listEl.append(imgEl);
+  
   const pEl = document.createElement('p');
-  pEl.innertext = 'id';
+  pEl.innerText = name;
   listEl.append(pEl);
 
   const minusButtonEl = document.createElement('button');
   minusButtonEl.className ="quantity-btn", "remove-btn", "center";
   minusButtonEl.innerText = "-";
+  listEl.append(minusButtonEl);
 
   const spanEl = document.createElement('span');
   spanEl.className = 'quantity-text', 'center';
-  spanEl.innerHTML = 1;
+  spanEl.innerText = 1;
+  listEl.append(spanEl);
 
   const plusButtonEl = document.createElement('button');
   plusButtonEl.className ="quantity-btn", "add-btn", "center";
   plusButtonEl.innerText = "+";
 
-  listEl.append(minusButtonEl, spanEl, plusButtonEl);
-
-  cartItemUlEl.append(listEl);
-
+  listEl.append(plusButtonEl);
+  }
 
 };
 
-const storeItem = renderStoreItem(itemListEl);
+renderStoreItem(cartItems);
 
 
+const cartItemsTest = [ ];
+
+function 00(initialData, cartItemsData ) { 
+ console.log("inside addToCart: ", initialData, cartItemsData);
+
+const veggieId = initialData.id;
+console.log ('initialData veggieId: ', veggieId);
+let foundItem = false;
+
+ for (let i = 0; i < cartItemsTest.length; i++ ) {
+0
+   let veggieQuant = cartItemsTest[i].quantity;
+  console.log('veggieQuant:', veggieQuant);
+
+
+
+   const cardItemId = cartItemsTest[i].item.id;
+   console.log ('initialData veggieId inside for: ', veggieId);
+   console.log ('cardItemId veggieId inside for: ', cardItemId);
+
+   if (veggieId === cardItemId) { 
+     veggieQuant = veggieQuant + 1;
+    //  const cartItemQuantity = veggieItem.quantity;
+    //  console.log("cartItemQuantity: ", cartItemQuantity);
+      foundItem = true;
+    }
+
+ if (!foundItem) { 
+  // veggieQuant = veggieQuant + 1;
+//  } else { 
+//   cartItems.push(newCartItems);
+ }
+  }
+
+const newcartItem = { 
+  item: initialData,
+  quantity: 1
+}
+
+cartItemsTest.push(newcartItem);
+console.log('cartItemsTest: ', cartItemsTest);
+
+}
+
+addToCart(data[0], cartItemsTest);
+addToCart(data[0], cartItemsTest);
+addToCart(data[1], cartItemsTest);
+addToCart(data[1], cartItemsTest);
 
 // totalCartDivEl = document.querySelector('.total-section');
 
