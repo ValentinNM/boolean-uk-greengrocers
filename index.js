@@ -136,7 +136,7 @@ const cartItems =[
   }
 ]
 
-console.log("Working : ", data[0].price);
+// console.log("Working : ", data[0].price);
 
 // get the image
 const headerEl = document.querySelector('.header');
@@ -154,7 +154,7 @@ const totalNumberEl = document.querySelector('.total-number');
 // }
 
 function renderCardItem (veggie) {
-  console.log("data: ", data);
+  // console.log("data: ", data);
   for (let i = 0; i < veggie.length; i ++ ){
     const id = veggie[i].id;
     const name = veggie[i].name;
@@ -177,6 +177,10 @@ function renderCardItem (veggie) {
     const buttonEl = document.createElement ('button');
     buttonEl.innerText = 'Add to cart';
 
+    buttonEl.addEventListener ("click", function (event) {
+      event.addToCart;
+    } )
+
     listEL.append(divEl,buttonEl );
 
     itemListEl.append(listEL);
@@ -190,7 +194,7 @@ const cardItem = renderCardItem(data);
 const cartItemUlEl = document.querySelector('.cart--item-list');
 
 function renderStoreItem (yourCart) {
-  console.log("our data in yourCart: ", yourCart);
+  // console.log("our data in yourCart: ", yourCart);
  
   for (let i = 0; i < yourCart.length; i++) { 
     const cart = yourCart[i];
@@ -237,34 +241,39 @@ renderStoreItem(cartItems);
 
 const cartItemsTest = [ ];
 
-function 00(initialData, cartItemsData ) { 
- console.log("inside addToCart: ", initialData, cartItemsData);
+function addToCart(initialData, cartItemsData ) { 
+//  console.log("inside addToCart: ", initialData, cartItemsData);
 
 const veggieId = initialData.id;
 console.log ('initialData veggieId: ', veggieId);
 let foundItem = false;
 
  for (let i = 0; i < cartItemsTest.length; i++ ) {
-0
-   let veggieQuant = cartItemsTest[i].quantity;
+
+  console.log("itineration #", i +1); 
+  
+  let veggieQuant = cartItemsTest[i].quantity;
   console.log('veggieQuant:', veggieQuant);
 
+  const cardItemId = cartItemsTest[i].item.id;
+  console.log ('initialData veggieId inside for: ', veggieId);
+  console.log ('cardItemId veggieId inside for: ', cardItemId);
 
-
-   const cardItemId = cartItemsTest[i].item.id;
-   console.log ('initialData veggieId inside for: ', veggieId);
-   console.log ('cardItemId veggieId inside for: ', cardItemId);
-
-   if (veggieId === cardItemId) { 
+  if (veggieId === cardItemId) { 
      veggieQuant = veggieQuant + 1;
     //  const cartItemQuantity = veggieItem.quantity;
     //  console.log("cartItemQuantity: ", cartItemQuantity);
+    const idk = veggieQuant;
       foundItem = true;
     }
 
+    console.log("FOUND ITEMS: ", foundItem);
+
  if (!foundItem) { 
-  // veggieQuant = veggieQuant + 1;
-//  } else { 
+  veggieQuant = veggieQuant + 1;
+  console.log('veggieQuant outside:', veggieQuant);
+//  } else {
+  
 //   cartItems.push(newCartItems);
  }
   }
@@ -275,7 +284,7 @@ const newcartItem = {
 }
 
 cartItemsTest.push(newcartItem);
-console.log('cartItemsTest: ', cartItemsTest);
+// console.log('cartItemsTest: ', cartItemsTest);
 
 }
 
