@@ -1,5 +1,5 @@
 
-const data = [
+const storeItems = [
   {
     id: "001-beetroot",
     name: "Beetroot",
@@ -53,92 +53,91 @@ const data = [
 ];
 
 
-const cartItems =[
-  {
-    item: {
-      id: "001-beetroot",
-      name: "Beetroot",
-      price: 0.33
-    },
-    quantity: 8,
-  },
-  {
-    item: {
-      id: "002-carrot",
-      name: "Carrot",
-      price: 0.59
-    },
-    quantity: 8,
-  },
-    {
-    item: {
-      id: "003-apple",
-      name: "Apple",
-      price: 0.20
-    },
-    quantity: 8,
-  },
-    {
-    item: {
-      id: "004-apricot",
-      name: "Apricot",
-      price: 1
-    },
-    quantity: 8,
-  },
-    {
-    item: {
-      id: "005-avocado",
-      name: "Avocado ",
-      price: 1.49
-    },
-    quantity: 8,
-  },
-    {
-    item: {
-      id: "006-bananas",
-      name: "Bananas",
-      price: 2.51
-    },
-    quantity: 8,
-  },
-    {
-    item: {
-      id: "007-bell-pepper",
-      name: "Bell-pepper",
-      price: 3.99
-    },
-    quantity: 8,
-  },
-    {
-    item: {
-      id: "008-berry",
-      name: "Berry",
-      price: 0.99
-    },
-    quantity: 8,
-  },
-    {
-    item: {
-      id: "009-blueberry",
-      name: "Blueberry",
-      price: 5
-    },
-    quantity: 8,
-  },
-    {
-    item: {
-      id: "010-eggplant",
-      name: "Eggplant",
-      price: 4.50
-    },
-    quantity: 8,
-  }
-]
+// const cartItems =[
+//   {
+//     item: {
+//       id: "001-beetroot",
+//       name: "Beetroot",
+//       price: 0.33
+//     },
+//     quantity: 8,
+//   },
+//   {
+//     item: {
+//       id: "002-carrot",
+//       name: "Carrot",
+//       price: 0.59
+//     },
+//     quantity: 8,
+//   },
+//     {
+//     item: {
+//       id: "003-apple",
+//       name: "Apple",
+//       price: 0.20
+//     },
+//     quantity: 8,
+//   },
+//     {
+//     item: {
+//       id: "004-apricot",
+//       name: "Apricot",
+//       price: 1
+//     },
+//     quantity: 8,
+//   },
+//     {
+//     item: {
+//       id: "005-avocado",
+//       name: "Avocado ",
+//       price: 1.49
+//     },
+//     quantity: 8,
+//   },
+//     {
+//     item: {
+//       id: "006-bananas",
+//       name: "Bananas",
+//       price: 2.51
+//     },
+//     quantity: 8,
+//   },
+//     {
+//     item: {
+//       id: "007-bell-pepper",
+//       name: "Bell-pepper",
+//       price: 3.99
+//     },
+//     quantity: 8,
+//   },
+//     {
+//     item: {
+//       id: "008-berry",
+//       name: "Berry",
+//       price: 0.99
+//     },
+//     quantity: 8,
+//   },
+//     {
+//     item: {
+//       id: "009-blueberry",
+//       name: "Blueberry",
+//       price: 5
+//     },
+//     quantity: 8,
+//   },
+//     {
+//     item: {
+//       id: "010-eggplant",
+//       name: "Eggplant",
+//       price: 4.50
+//     },
+//     quantity: 8,
+//   }
+// ]
 
-// console.log("Working : ", data[0].price);
+const cartItems = [];
 
-// get the image
 const headerEl = document.querySelector('.header');
 const itemListEl = document.querySelector('.store--item-list');
 
@@ -148,17 +147,12 @@ const totalSectionEl = document.querySelector('.total-section');
 const totalNumberEl = document.querySelector('.total-number');
 
 
-// function renderImage (image) {
-//   for (let i = 0; i < data.length) 
-
-// }
-
-function renderCardItem (veggie) {
-  // console.log("data: ", data);
-  for (let i = 0; i < veggie.length; i ++ ){
-    const id = veggie[i].id;
-    const name = veggie[i].name;
-    // console.log("id and name: ", id, name);
+function renderStoreItems (storeItems) {
+  // console.log("storeItems: ", storeItems);
+  for (let i = 0; i < storeItems.length; i ++ ){
+    const id = storeItems[i].id;
+    console.log("id: ",id);
+    const name = storeItems[i].name;
 
     const listEL = document.createElement('li');
     const divEl = document.createElement('div');
@@ -177,8 +171,9 @@ function renderCardItem (veggie) {
     const buttonEl = document.createElement ('button');
     buttonEl.innerText = 'Add to cart';
 
-    buttonEl.addEventListener ("click", function (event) {
-      event.addToCart;
+    buttonEl.addEventListener ("click", () => {
+      addToCart(storeItems, cartItems);
+      renderCartItems(cartItem);
     } )
 
     listEL.append(divEl,buttonEl );
@@ -188,22 +183,21 @@ function renderCardItem (veggie) {
 
 };
 
-const cardItem = renderCardItem(data);
+// renderCartItems(storeItems);
 
 
 const cartItemUlEl = document.querySelector('.cart--item-list');
 
-function renderStoreItem (yourCart) {
-  // console.log("our data in yourCart: ", yourCart);
+function renderCartItems (cartItems) {
+
+  cartItemUlEl.innerHTML = ''; 
  
-  for (let i = 0; i < yourCart.length; i++) { 
-    const cart = yourCart[i];
-    // console.log("cart:", cart);
+  for (let i = 0; i < cartItems.length; i++) { 
+    const cart = cartItems[i];
     const name = cart.item.name;
     const id = cart.item.id;
 
     const listEl = document.createElement('li');
-    cartItemUlEl.append(listEl);
     
     const imgEl = document.createElement('img');
     imgEl.className = ".cart--item-icon";
@@ -217,81 +211,87 @@ function renderStoreItem (yourCart) {
   pEl.innerText = name;
   listEl.append(pEl);
 
-  const minusButtonEl = document.createElement('button');
-  minusButtonEl.className ="quantity-btn", "remove-btn", "center";
-  minusButtonEl.innerText = "-";
-  listEl.append(minusButtonEl);
+  const removeButtonEl = document.createElement('button');
+  removeButtonEl.className ="quantity-btn remove-btn center";
+  removeButtonEl.innerText = "-";
+  listEl.append(removeButtonEl);
 
   const spanEl = document.createElement('span');
-  spanEl.className = 'quantity-text', 'center';
-  spanEl.innerText = 1;
+  spanEl.className = 'quantity-text center';
+  spanEl.innerText = cartItem.quantity;
   listEl.append(spanEl);
 
-  const plusButtonEl = document.createElement('button');
-  plusButtonEl.className ="quantity-btn", "add-btn", "center";
-  plusButtonEl.innerText = "+";
+  const addButtonEl = document.createElement('button');
+  addButtonEl.className ="quantity-btn add-btn center";
+  addButtonEl.innerText = "+";
+  
+  addButtonEl.addEventListener("click", () => { 
+    console.log("item object clicked",item );
+    addToCart(item, cartItems);
+    renderCartItems(cartItems);
+  });
+  
+  listEl.append(addButtonEl);
 
-  listEl.append(plusButtonEl);
+  cartItemUlEl.append(listEl);
+
   }
 
 };
 
-renderStoreItem(cartItems);
+renderCartItems(cartItems);
 
 
-const cartItemsTest = [ ];
+function addToCart(storeItems, cartItems ) { 
+//  console.log("inside addToCart: ", storeItems, cartItemsstoreItems);
 
-function addToCart(initialData, cartItemsData ) { 
-//  console.log("inside addToCart: ", initialData, cartItemsData);
-
-const veggieId = initialData.id;
-console.log ('initialData veggieId: ', veggieId);
+// const storeItemsId = storeItems.id;
+// console.log ('storeItems storeItemsId: ', storeItemsId);
 let foundItem = false;
 
- for (let i = 0; i < cartItemsTest.length; i++ ) {
+ for (let i = 0; i < cartItems.length; i++ ) {
+   const cartItem = cartItems[i];
 
-  console.log("itineration #", i +1); 
-  
-  let veggieQuant = cartItemsTest[i].quantity;
-  console.log('veggieQuant:', veggieQuant);
+  // console.log(" * inside FOR itineration #", i +1); 
 
-  const cardItemId = cartItemsTest[i].item.id;
-  console.log ('initialData veggieId inside for: ', veggieId);
-  console.log ('cardItemId veggieId inside for: ', cardItemId);
+  if (storeItems.id === cartItem.item.id) { 
+    console.log(" - inside IF itineration #", i +1); 
+    cartItem.quantity = cartItem.quantity + 1;
 
-  if (veggieId === cardItemId) { 
-     veggieQuant = veggieQuant + 1;
-    //  const cartItemQuantity = veggieItem.quantity;
-    //  console.log("cartItemQuantity: ", cartItemQuantity);
-    const idk = veggieQuant;
-      foundItem = true;
+    foundItem = true; 
     }
-
-    console.log("FOUND ITEMS: ", foundItem);
-
- if (!foundItem) { 
-  veggieQuant = veggieQuant + 1;
-  console.log('veggieQuant outside:', veggieQuant);
-//  } else {
+  }
   
-//   cartItems.push(newCartItems);
- }
+  if (!foundItem) { 
+   const newCartItem = { 
+    item: storeItems,
+    quantity: 1
+  };
+  
+  cartItems.push(newCartItem);
+  // console.log('cartItems: ', cartItems);
+
   }
 
-const newcartItem = { 
-  item: initialData,
-  quantity: 1
 }
 
-cartItemsTest.push(newcartItem);
-// console.log('cartItemsTest: ', cartItemsTest);
+// addToCart(storeItems, cartItems);
+// addToCart(storeItems, cartItems);
+// addToCart(storeItems, cartItems);
+// addToCart(storeItems, cartItems);
+// addToCart(storeItems[1], cartItems);
+// addToCart(storeItems[1], cartItems);
+// addToCart(storeItems[1], cartItems);
+
+// console.log('cartItems: ', cartItems);
+
+function removeFromCart () { 
+
+
 
 }
 
-addToCart(data[0], cartItemsTest);
-addToCart(data[0], cartItemsTest);
-addToCart(data[1], cartItemsTest);
-addToCart(data[1], cartItemsTest);
+removeFromCart();
 
 // totalCartDivEl = document.querySelector('.total-section');
 
