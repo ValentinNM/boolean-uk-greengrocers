@@ -1,4 +1,3 @@
-
 const storeItems = [
   {
     id: "001-beetroot",
@@ -148,7 +147,6 @@ const totalNumberEl = document.querySelector('.total-number');
 
 
 function renderStoreItems (storeItems) {
-  // console.log("storeItems: ", storeItems);
   for (let i = 0; i < storeItems.length; i ++ ){
     const id = storeItems[i].id;
     console.log("id: ",id);
@@ -183,6 +181,8 @@ function renderStoreItems (storeItems) {
 
 };
 
+
+renderStoreItems(storeItems);
 // renderCartItems(storeItems);
 
 
@@ -275,23 +275,23 @@ let foundItem = false;
 
 }
 
-// addToCart(storeItems, cartItems);
-// addToCart(storeItems, cartItems);
-// addToCart(storeItems, cartItems);
-// addToCart(storeItems, cartItems);
+addToCart(storeItems, cartItems);
+addToCart(storeItems, cartItems);
+addToCart(storeItems, cartItems);
+addToCart(storeItems, cartItems);
 // addToCart(storeItems[1], cartItems);
 // addToCart(storeItems[1], cartItems);
 // addToCart(storeItems[1], cartItems);
 
 // console.log('cartItems: ', cartItems);
 
-function removeFromCart () { 
+// function removeFromCart () { 
 
 
 
-}
+// }
 
-removeFromCart();
+// removeFromCart();
 
 // totalCartDivEl = document.querySelector('.total-section');
 
